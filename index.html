@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Kasir</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+</head>
+<body>
+    <header>
+        <h1>Aplikasi Kasir</h1>
+        <div id="status" class="status online">Online</div>
+    </header>
+
+    <main class="container">
+        <section class="products">
+            <h2>Produk</h2>
+            <div id="product-list" class="grid">
+                <!-- Products will be generated here by app.js -->
+            </div>
+        </section>
+
+        <section class="cart">
+            <h2>Keranjang</h2>
+            <ul id="cart-items">
+                <!-- Cart items will appear here -->
+            </ul>
+            <div class="total-section">
+                <strong>Total: Rp <span id="total-price">0</span></strong>
+            </div>
+            <button id="checkout-btn" class="btn">Bayar</button>
+            <button id="clear-cart-btn" class="btn btn-danger">Kosongkan</button>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker terdaftar:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker gagal didaftarkan:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
